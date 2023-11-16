@@ -11,15 +11,20 @@ const Kanban = () => {
     const [columns, setColumns] = useState(columnsFromBackend);
     const handleAddOther = () => {
         const newItemId = uuidv4();
-        setColumns(prevColumns => {
-            return {
-                ...prevColumns,
-                [newItemId]: {
-                    title: 'New Item',
-                    items: []
-                }
-            };
-        });
+        const inputValue = window.prompt('Enter your title:');
+        if (inputValue !== null) {
+            // Do something with the input value
+            setColumns(prevColumns => {
+                return {
+                    ...prevColumns,
+                    [newItemId]: {
+                        title: inputValue,
+                        items: []
+                    }
+                };
+            });
+        }
+
     }
     const onDragEnd = (result, columns, setColumns) => {
         if (!result.destination) return;
